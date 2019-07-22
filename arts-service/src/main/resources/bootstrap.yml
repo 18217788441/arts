@@ -1,0 +1,10 @@
+app:
+  id: @appId@
+apollo:
+  meta: @meta@
+  cluster: @idc@
+  bootstrap:
+    enabled: true
+    namespaces: @namespaces@
+    eagerLoad:
+      enabled: true

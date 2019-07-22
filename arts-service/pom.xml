@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>gep-permission-core</artifactId>
+        <groupId>com.gepholding</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>arts-service</artifactId>
+
+    <dependencies>
+        <!--***************************一方库***************************-->
+        <!--***************************二方库***************************-->
+        <!--***************************组件库***************************-->
+        <!--公用基础 模块-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-basic</artifactId>
+        </dependency>
+        <!--公用工具 模块-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-tool</artifactId>
+        </dependency>
+        <!--公用db 模块-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-db-hikaricp</artifactId>
+        </dependency>
+        <!--spring框架-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-spring-boot</artifactId>
+        </dependency>
+        <!--spring-web框架-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-spring-web</artifactId>
+        </dependency>
+        <!--spring-cloud框架-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-spring-cloud</artifactId>
+        </dependency>
+        <!--spring-monitor框架-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-monitor</artifactId>
+        </dependency>
+        <!--公用配置中心模块 模块-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-config-server</artifactId>
+        </dependency>
+        <!--swagger模块-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>module-swagger</artifactId>
+        </dependency>
+        <!--公用测试 模块-->
+        <dependency>
+            <groupId>com.gepholding</groupId>
+            <artifactId>common-test</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>arts</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <!--************************* maven插件 ***************************** -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <!-- 开发环境 -->
+            <id>dev</id>
+            <properties>
+                <appId>1001</appId>
+                <idc></idc>
+                <namespaces>application,100.gep-jdbc,100.redis,100.dfs,100.log,100.mq,100.CONSUL</namespaces>
+                <meta>http://10.0.20.95:8080</meta>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <!-- 功能环境 -->
+            <id>fat</id>
+            <properties>
+                <appId>1001</appId>
+                <idc></idc>
+                <namespaces>application,100.gep-jdbc,100.redis,100.dfs,100.log,100.CONSUL,100.mq</namespaces>
+                <meta>http://10.0.20.95:8081</meta>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 集成环境 -->
+            <id>uat</id>
+            <properties>
+                <appId>1001</appId>
+                <idc></idc>
+                <namespaces>application,100.gep-jdbc,100.redis,100.dfs,100.log,100.CONSUL,100.mq</namespaces>
+                <meta>http://10.0.20.95:8082</meta>
+            </properties>
+        </profile>
+
+        <profile>
+            <!--准生产环境 -->
+            <id>build</id>
+            <properties>
+                <env>PRO</env>
+                <appId>310000035</appId>
+                <idc>UAT</idc>
+                <namespaces>application,OPERATION.DB_GEP_CBPM,OPERATION.redis_trade,INTERNATIONAL.CONSUL,INTERNATIONAL.log,OPERATION.dfs</namespaces>
+                <meta>http://192.168.131.109:8080</meta>
+            </properties>
+        </profile>
+        <profile>
+            <!--生产环境 -->
+            <id>prod</id>
+            <properties>
+                <env>PRO</env>
+                <appId>310000035</appId>
+                <idc></idc>
+                <namespaces>application,OPERATION.DB_GEP_CBPM,OPERATION.redis_trade,INTERNATIONAL.CONSUL,INTERNATIONAL.log,OPERATION.dfs</namespaces>
+                <meta>http://192.168.131.109:8080</meta>
+            </properties>
+        </profile>
+
+    </profiles>
+
+</project>

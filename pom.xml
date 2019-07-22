@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.gepholding</groupId>
+        <artifactId>arts</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>arts</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>arts-service</module>
+    </modules>
+
+    <properties>
+        <arts.facad.version>1.0.0-SNAPSHOT</arts.facad.version>
+        <common-tool.version>1.0.0-RELEASE</common-tool.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--***************************一方库***************************-->
+            <!--***************************二方库***************************-->
+            <!--***************************组件库***************************-->
+            <!--公用工具 模块-->
+            <dependency>
+                <groupId>com.gepholding</groupId>
+                <artifactId>common-tool</artifactId>
+                <version>${common-tool.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

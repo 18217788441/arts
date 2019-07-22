@@ -1,0 +1,49 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: arts
+  devtools:
+    livereload:
+      port: 35730
+  servlet:
+    multipart:
+      maxFileSize: 60MB
+      maxRequestSize: 100MB
+  cloud:
+    consul:
+      host: ${spring.consul.config.url}
+      port: ${spring.consul.config.port}
+      discovery:
+        tags: prometheus-target
+        health-check-path: /actuator/health
+        prefer-ip-address: true
+        healthCheckInterval: 20s
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}-${spring.cloud.client.ip-address}-${server.port}
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+mapper:
+  identity: MYSQL
+  mappers: tk.mybatis.mapper.common.Mapper
+  notEmpty: true
+pagehelper:
+  helperDialect: mysql
+  params: count=countSql
+  reasonable: true
+  supportMethodsArguments: true
+swagger:
+  api-name: arts
+  api-package: com.arts.controller
