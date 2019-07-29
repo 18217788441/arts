@@ -30,7 +30,7 @@ public class CostTimeHandler implements InvocationHandler {
         try{
             long startTime = System.currentTimeMillis();
             ret=method.invoke(targetObject, args);
-            System.out.println("\n"+method.getName()+"-耗时："+(System.currentTimeMillis() - startTime));
+            System.out.println(method.getName()+"-耗时："+(System.currentTimeMillis() - startTime));
         }catch(Exception e){
             e.printStackTrace();
             throw e;
