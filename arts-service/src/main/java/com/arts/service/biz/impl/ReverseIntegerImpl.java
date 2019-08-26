@@ -21,6 +21,18 @@ public class ReverseIntegerImpl implements ReverseInteger {
      */
     @Override
     public int reverse(int x) {
-        return 0;
+        int reslut = 0;
+        while (x != 0) {
+            int pop = x % 10;
+            x=x / 10;
+            if (reslut > Integer.MAX_VALUE/10 || (reslut == Integer.MAX_VALUE / 10 && pop > 7)){
+                return 0;
+            }
+            if (reslut < Integer.MIN_VALUE/10 || (reslut == Integer.MIN_VALUE / 10 && pop < -8)){
+                return 0;
+            }
+            reslut = reslut * 10 + pop;
+        }
+        return reslut;
     }
 }

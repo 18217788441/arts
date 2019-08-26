@@ -1,4 +1,4 @@
-package com.arts.service.arts1;
+package com.arts.service.biz;
 
 import com.arts.service.biz.TwoSum;
 import com.arts.service.biz.impl.TwoSumImpl;
@@ -23,9 +23,7 @@ import org.testng.annotations.Test;
 @Slf4j
 public class TwoSumTest {
 
-
-    private CostTimeHandler costTimeHandler = new CostTimeHandler();
-    private TwoSum twoSumTest = (TwoSum) costTimeHandler.newProxyInstance(new TwoSumImpl());
+    private TwoSum twoSumTest = (TwoSum) new CostTimeHandler().newProxyInstance(new TwoSumImpl());
 
     private int size = 10000000;
     private int[] nums = new int[size];
